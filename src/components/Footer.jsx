@@ -36,7 +36,7 @@ export default function Footer() {
         {/* Social Links */}
         <div className="flex justify-center md:justify-end space-x-5 text-2xl">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/Preyoshi04"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
@@ -44,7 +44,7 @@ export default function Footer() {
             <FaGithub />
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/preyoshi-mondal-901a21263/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
@@ -52,7 +52,7 @@ export default function Footer() {
             <FaLinkedin />
           </a>
           <a
-            href="https://leetcode.com/yourusername"
+            href="https://leetcode.com/u/Preyoshi/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
@@ -60,7 +60,7 @@ export default function Footer() {
             <SiLeetcode />
           </a>
           <a
-            href="https://www.hackerrank.com/yourusername"
+            href="https://www.hackerrank.com/profile/preyoshimondal"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
@@ -68,7 +68,7 @@ export default function Footer() {
             <FaHackerrank />
           </a>
           <a
-            href="https://auth.geeksforgeeks.org/user/yourusername"
+            href="https://www.geeksforgeeks.org/user/preyoshik4hs/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-yellow-400 transition"
