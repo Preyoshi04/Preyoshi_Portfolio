@@ -18,7 +18,7 @@ const Contact = () => {
           <iframe
             src="/cv.pdf"
             title="My CV"
-            className="w-full h-[500px] rounded-xl"
+            className="w-full h-140 rounded-xl"
           ></iframe>
           <a
             href="/cv.pdf"

@@ -1,51 +1,74 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import {
   SiReact,
   SiJavascript,
   SiHtml5,
   SiCss3,
-  SiGithub,
+  SiMongodb,
+  SiExpress,
+  SiNodedotjs,
 } from "react-icons/si";
 import { MdStorage } from "react-icons/md";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
-// 🔹 Reusable Project Card
-const ProjectCard = ({ title, description, link, github, images, techStack }) => {
+// 🔹 Image Slider
+const ImageSlider = ({ images, title }) => {
   const [index, setIndex] = useState(0);
 
-  // Auto-change image every 3s
-  useEffect(() => {
-    if (!images || images.length === 0) return;
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [images]);
+  const handleNext = () => setIndex((prev) => (prev + 1) % images.length);
+  const handlePrev = () =>
+    setIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  if (!images || images.length === 0) return null;
 
   return (
+    <div className="relative w-full h-60 overflow-hidden rounded-lg mb-4">
+      <img
+        src={images[index]}
+        alt={`${title} screenshot`}
+        className="w-full h-full object-contain rounded-lg transition-all duration-300"
+      />
+
+      {/* Left Button */}
+      <button
+        onClick={handlePrev}
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full"
+      >
+        <BiLeftArrow size={20} />
+      </button>
+
+      {/* Right Button */}
+      <button
+        onClick={handleNext}
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full"
+      >
+        <BiRightArrow size={20} />
+      </button>
+    </div>
+  );
+};
+
+// 🔹 Reusable Project Card
+const ProjectCard = ({
+  title,
+  description,
+  link,
+  github,
+  images,
+  techStack,
+}) => {
+  return (
     <motion.div
-      className="bg-gradient-to-br from-blue-900 to-black p-6 rounded-2xl shadow-lg text-yellow-100 hover:scale-105 transition-transform duration-300"
+      className="bg-gradient-to-br from-black to-blue-900 p-6 rounded-2xl shadow-lg text-yellow-100 hover:scale-105 transition-transform duration-300"
       whileHover={{ y: -10 }}
     >
       <h3 className="text-2xl font-bold mb-3 text-yellow-200">{title}</h3>
 
-      {/* Auto Image Slider for Web Projects */}
+      {/* Image Slider Section */}
       {images && images.length > 0 && (
-        <div className="mb-4 relative w-full h-100 overflow-hidden rounded-lg">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={index}
-              src={images[index]}
-              alt={`${title} screenshot`}
-              className="absolute w-auto h-auto object-contain rounded-lg"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.6 }}
-            />
-          </AnimatePresence>
-        </div>
+        <ImageSlider images={images} title={title} />
       )}
 
       <p className="mb-4 text-sm">{description}</p>
@@ -71,7 +94,7 @@ const ProjectCard = ({ title, description, link, github, images, techStack }) =>
             href={link}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-yellow-200 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 "
           >
             <FaExternalLinkAlt /> Live
           </a>
@@ -81,7 +104,7 @@ const ProjectCard = ({ title, description, link, github, images, techStack }) =>
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 border border-yellow-400 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 hover:text-black transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-yellow-200 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 "
           >
             <FaGithub /> Code
           </a>
@@ -106,31 +129,94 @@ const Projects = () => {
       >
         🌐Projects
       </motion.h2>
-      
+
       <div className="mb-16">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <ProjectCard
+            title="SyncLy: Online Notes Keeping Platform"
+            description="A full-stack MERN notes platform that lets users create, edit, organize, and securely store their notes in real time."
+            link="https://syncly-9sfq.onrender.com/"
+            github="https://github.com/Preyoshi04/Syncly"
+            images={[
+              "/projects/notes (1).png",
+              "/projects/notes (2).png",
+              "/projects/notes (3).png",
+              "/projects/notes (4).png",
+              "/projects/notes (5).png",
+            ]}
+            techStack={[
+              {
+                name: "MongoDB",
+                icon: <SiMongodb className="text-green-500" />,
+              },
+              {
+                name: "Express Js",
+                icon: <SiExpress className="text-orange-500" />,
+              },
+              { name: "React", icon: <SiReact className="text-blue-400" /> },
+              {
+                name: "Node Js",
+                icon: <SiNodedotjs className="text-blue-500" />,
+              },
+            ]}
+          />
+
+          <ProjectCard
+            title="QuizMaster: Online quiz platform with multiple categories"
+            description="A MERN-based quiz app that lets users choose category, difficulty, and number of questions to take personalized quizzes with instant results."
+            link="https://quizmaster-frontend-uxch.onrender.com/login"
+            github="https://github.com/Preyoshi04/QuizMaster"
+            images={[
+              "/projects/quiz (1).png",
+              "/projects/quiz (2).png",
+              "/projects/quiz (3).png",
+              "/projects/quiz (4).png",
+              "/projects/quiz (5).png",
+              "/projects/quiz (6).png",
+            ]}
+            techStack={[
+              {
+                name: "MongoDB",
+                icon: <SiMongodb className="text-green-500" />,
+              },
+              {
+                name: "Express Js",
+                icon: <SiExpress className="text-orange-500" />,
+              },
+              { name: "React", icon: <SiReact className="text-blue-400" /> },
+              {
+                name: "Node Js",
+                icon: <SiNodedotjs className="text-blue-500" />,
+              },
+            ]}
+          />
+
           <ProjectCard
             title="TaskNest: Task Manager"
             description="A React-based Task Manager that lets users add and delete tasks with date and time, while using local storage to persist data across sessions."
             link="https://tasknest-six.vercel.app/"
             github="https://github.com/Preyoshi04/Task-Manager-React"
-            images={[
-              "/projects/task1.png",
-              "/projects/task2.png",
-            ]}
+            images={["/projects/task1.png", "/projects/task2.png"]}
             techStack={[
               { name: "React", icon: <SiReact className="text-blue-400" /> },
-              { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" /> },
+              {
+                name: "JavaScript",
+                icon: <SiJavascript className="text-yellow-500" />,
+              },
               { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
               { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
-              { name: "LocalStorage", icon: <MdStorage className="text-green-400" /> },
+              {
+                name: "LocalStorage",
+                icon: <MdStorage className="text-green-400" />,
+              },
             ]}
           />
+
           <ProjectCard
             title="Textify: Text Modifier Website"
             description="A React-based tool to modify text (uppercase, lowercase, find & replace) with options to download results as .txt or .pdf. Built with React Router DOM for smooth navigation and a clean, responsive UI."
             github="https://github.com/Preyoshi04/TEXTIFY-Text-Utility-"
-           images={[
+            images={[
               "/projects/text1.png",
               "/projects/text2.png",
               "/projects/text3.png",
@@ -138,11 +224,15 @@ const Projects = () => {
             ]}
             techStack={[
               { name: "React", icon: <SiReact className="text-blue-400" /> },
-              { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" /> },
+              {
+                name: "JavaScript",
+                icon: <SiJavascript className="text-yellow-500" />,
+              },
               { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
               { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
             ]}
           />
+
           <ProjectCard
             title="Rock Paper Scissors Game"
             description="A simple Rock-Paper-Scissors game where the user competes against the computer, with random computer choices and instant result display."
@@ -157,9 +247,13 @@ const Projects = () => {
             techStack={[
               { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
               { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
-              { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" /> },
+              {
+                name: "JavaScript",
+                icon: <SiJavascript className="text-yellow-500" />,
+              },
             ]}
           />
+
           <p>More projects coming soon....</p>
         </div>
       </div>
