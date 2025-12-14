@@ -8,8 +8,8 @@ const skillsData = [
     items: ["Java", "Python", "JavaScript"],
   },
   {
-    category: "Frontend Development",
-    items: ["HTML", "CSS", "Tailwind CSS", "React", "Vite"],
+    category: "Development",
+    items: ["HTML", "CSS", "React", "Node js", "Express.js" ,"MongoDB" ],
   },
   {
     category: "Databases",
@@ -17,7 +17,7 @@ const skillsData = [
   },
   {
     category: "Tools & Platforms",
-    items: ["Git", "GitHub", "VS Code"],
+    items: ["Git", "GitHub", "VS Code", "Vercel", "Netlify" , "Render" ],
   },
   {
     category: "Graphics Designing",
