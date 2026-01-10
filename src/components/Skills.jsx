@@ -9,11 +9,11 @@ const skillsData = [
   },
   {
     category: "Development",
-    items: ["HTML", "CSS", "React", "Node js", "Express.js" ,"MongoDB" ],
+    items: ["HTML", "CSS", "React", "Node js", "Express.js" ,"MongoDB", "Next Js" ],
   },
   {
     category: "Databases",
-    items: ["MySQL"],
+    items: ["MySQL", "MongoDB", "Firebase"],
   },
   {
     category: "Tools & Platforms",

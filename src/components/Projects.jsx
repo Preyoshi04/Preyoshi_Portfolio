@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub, FaRobot } from "react-icons/fa";
 import {
   SiReact,
   SiJavascript,
@@ -9,9 +9,12 @@ import {
   SiMongodb,
   SiExpress,
   SiNodedotjs,
+  SiNextdotjs,
+  SiPostgresql,
 } from "react-icons/si";
-import { MdStorage } from "react-icons/md";
+import { MdApi, MdStorage } from "react-icons/md";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { DiFirebase } from "react-icons/di";
 
 // 🔹 Image Slider
 const ImageSlider = ({ images, title }) => {
@@ -61,7 +64,7 @@ const ProjectCard = ({
 }) => {
   return (
     <motion.div
-      className="bg-gradient-to-br from-black to-blue-900 p-6 rounded-2xl shadow-lg text-yellow-100 hover:scale-105 transition-transform duration-300"
+      className="bg-gradient-to-br from-black to-blue-900 p-6 border border-amber-500 cursor-pointer rounded-2xl shadow-lg text-yellow-100 hover:scale-105 transition-transform duration-300"
       whileHover={{ y: -10 }}
     >
       <h3 className="text-2xl font-bold mb-3 text-yellow-200">{title}</h3>
@@ -131,7 +134,44 @@ const Projects = () => {
       </motion.h2>
 
       <div className="mb-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 gap-8 max-w-7xl mx-auto">
+          <ProjectCard
+            title="MockWise: AI-Powered Mock Interview Platform"
+            description="A full-stack application that leverages AI to conduct mock interviews, providing users with real-time feedback and performance analytics to enhance their interview skills."
+            link="https://mock-wise-one.vercel.app/"
+            github="https://github.com/Preyoshi04/MockWise"
+            images={[
+              "/projects/mockwise (1).png",
+              "/projects/mockwise (2).png",
+              "/projects/mockwise (3).png",
+              "/projects/mockwise (4).png",
+              "/projects/mockwise (5).png",
+            ]}
+            techStack={[
+              {
+                name: "Next Js",
+                icon: <SiNextdotjs className="text-black" />,
+              },
+              {
+                name: "PostgreSQL",
+                icon: <SiPostgresql className="text-blue-500" />,
+              },
+              { name: "Vapi", icon: <FaRobot className="text-red-400" /> },
+              {
+                name: "Node Js",
+                icon: <SiNodedotjs className="text-blue-500" />,
+              },
+              {
+                name: "Gemini API",
+                icon: <MdApi className="text-indigo-500" />,
+              },
+              {
+                name: "Firebase",
+                icon: <DiFirebase className="text-yellow-500" />,
+              },
+            ]}
+          />
+
           <ProjectCard
             title="SyncLy: Online Notes Keeping Platform"
             description="A full-stack MERN notes platform that lets users create, edit, organize, and securely store their notes in real time."
@@ -190,13 +230,39 @@ const Projects = () => {
               },
             ]}
           />
-
+          <ProjectCard
+            title="ReachDesk : MERN Based Contact Management System"
+            description="A MERN stack contact management system that allows users to add, view, edit, and delete contacts with a user-friendly interface and robust backend."
+            link="https://reachdesk-frontend-szoj.onrender.com/"
+            github="https://github.com/Preyoshi04/ReachDesk"
+            images={[
+              "/projects/reachdesk (1).png",
+              "/projects/reachdesk (2).png",
+              "/projects/reachdesk (3).png",
+              "/projects/reachdesk (4).png",
+            ]}
+            techStack={[
+              {
+                name: "MongoDB",
+                icon: <SiMongodb className="text-green-500" />,
+              },
+              {
+                name: "Express Js",
+                icon: <SiExpress className="text-orange-500" />,
+              },
+              { name: "React", icon: <SiReact className="text-blue-400" /> },
+              {
+                name: "Node Js",
+                icon: <SiNodedotjs className="text-blue-500" />,
+              },
+            ]}
+          />
           <ProjectCard
             title="TaskNest: Task Manager"
             description="A React-based Task Manager that lets users add and delete tasks with date and time, while using local storage to persist data across sessions."
             link="https://tasknest-six.vercel.app/"
             github="https://github.com/Preyoshi04/Task-Manager-React"
-            images={["/projects/task1.png", "/projects/task2.png"]}
+            images={["/projects/task.png"]}
             techStack={[
               { name: "React", icon: <SiReact className="text-blue-400" /> },
               {
@@ -215,12 +281,12 @@ const Projects = () => {
           <ProjectCard
             title="Textify: Text Modifier Website"
             description="A React-based tool to modify text (uppercase, lowercase, find & replace) with options to download results as .txt or .pdf. Built with React Router DOM for smooth navigation and a clean, responsive UI."
+            link="https://textify-text-utility-five.vercel.app/"
             github="https://github.com/Preyoshi04/TEXTIFY-Text-Utility-"
             images={[
-              "/projects/text1.png",
-              "/projects/text2.png",
-              "/projects/text3.png",
-              "/projects/text4.png",
+              "/projects/text (1).png",
+              "/projects/text (2).png",
+              "/projects/text (3).png",
             ]}
             techStack={[
               { name: "React", icon: <SiReact className="text-blue-400" /> },
@@ -230,27 +296,6 @@ const Projects = () => {
               },
               { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
               { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
-            ]}
-          />
-
-          <ProjectCard
-            title="Rock Paper Scissors Game"
-            description="A simple Rock-Paper-Scissors game where the user competes against the computer, with random computer choices and instant result display."
-            link="https://rock-paper-scissors-game-psi-two.vercel.app/"
-            github="https://github.com/Preyoshi04/Rock-Paper-Scissors-Game"
-            images={[
-              "/projects/rps1.png",
-              "/projects/rps2.png",
-              "/projects/rps3.png",
-              "/projects/rps4.png",
-            ]}
-            techStack={[
-              { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
-              { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
-              {
-                name: "JavaScript",
-                icon: <SiJavascript className="text-yellow-500" />,
-              },
             ]}
           />
 
