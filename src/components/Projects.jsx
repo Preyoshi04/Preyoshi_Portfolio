@@ -27,27 +27,27 @@ const ImageSlider = ({ images, title }) => {
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="relative w-full h-60 overflow-hidden rounded-lg mb-4">
+    <div className="relative w-full h-60 overflow-hidden rounded-xl mb-4 shadow-inner bg-white/10">
       <img
         src={images[index]}
         alt={`${title} screenshot`}
-        className="w-full h-full object-contain rounded-lg transition-all duration-300"
+        className="w-full h-full object-contain rounded-xl transition-all duration-300"
       />
 
       {/* Left Button */}
       <button
         onClick={handlePrev}
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full"
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/30 backdrop-blur-md hover:bg-white/50 text-slate-800 p-2 rounded-full transition-all border border-white/40"
       >
-        <BiLeftArrow size={20} />
+        <div className="text-purple-600"><BiLeftArrow size={18} /></div>
       </button>
 
       {/* Right Button */}
       <button
         onClick={handleNext}
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full"
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/30 backdrop-blur-md hover:bg-white/50 text-slate-800 p-2 rounded-full transition-all border border-white/40"
       >
-        <BiRightArrow size={20} />
+        <div className="text-purple-600"><BiRightArrow size={18} /></div>
       </button>
     </div>
   );
@@ -64,27 +64,27 @@ const ProjectCard = ({
 }) => {
   return (
     <motion.div
-      className="bg-gradient-to-br from-black to-blue-900 p-6 border border-amber-500 cursor-pointer rounded-2xl shadow-lg text-yellow-100 hover:scale-105 transition-transform duration-300"
-      whileHover={{ y: -10 }}
+      className="backdrop-blur-xl bg-white/30 border border-pink-300/50 p-6 cursor-pointer rounded-3xl shadow-xl shadow-purple-100/20 text-slate-700 hover:shadow-2xl hover:shadow-purple-200/40 transition-all duration-300"
+      whileHover={{ y: -8 }}
     >
-      <h3 className="text-2xl font-bold mb-3 text-yellow-200">{title}</h3>
+      <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent">{title}</h3>
 
       {/* Image Slider Section */}
       {images && images.length > 0 && (
         <ImageSlider images={images} title={title} />
       )}
 
-      <p className="mb-4 text-sm">{description}</p>
+      <p className="mb-4 text-sm text-slate-600 leading-relaxed font-medium font-serif">{description}</p>
 
       {/* Tech Stack Section */}
       {techStack && techStack.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-6">
           {techStack.map((tech, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-1 bg-gray-600 text-white px-2 py-1 rounded-lg shadow-sm hover:shadow-md transition text-sm font-medium"
+              className="flex items-center gap-1.5 bg-white/40 border border-white/60 text-slate-700 px-3 py-1 rounded-full shadow-sm hover:bg-white/60 transition text-xs font-semibold"
             >
-              {tech.icon}
+              <span className="text-sm">{tech.icon}</span>
               {tech.name}
             </div>
           ))}
@@ -97,9 +97,9 @@ const ProjectCard = ({
             href={link}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-yellow-200 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 "
+            className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-md hover:opacity-90 transition-opacity"
           >
-            <FaExternalLinkAlt /> Live
+            <FaExternalLinkAlt size={12} /> Live
           </a>
         )}
         {github && (
@@ -107,9 +107,9 @@ const ProjectCard = ({
             href={github}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-yellow-200 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 "
+            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/50 border border-purple-200 text-purple-700 px-4 py-2.5 rounded-xl font-bold text-sm hover:bg-white/80 transition-all"
           >
-            <FaGithub /> Code
+            <FaGithub size={14} /> Code
           </a>
         )}
       </div>
@@ -122,15 +122,16 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen bg-gradient-to-b from-black via-blue-950 to-black text-yellow-100 px-6 py-20"
+      className="min-h-screen bg-transparent text-slate-800 px-6 py-24"
     >
       <motion.h2
-        className="text-4xl font-bold text-center mb-14 text-yellow-200"
-        initial={{ opacity: 0, y: -50 }}
+        className="text-4xl md:text-5xl font-extrabold text-center mb-16"
+        initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        🌐Projects
+        <span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent uppercase font-serif">Projects</span>
       </motion.h2>
 
       <div className="mb-16">
@@ -159,7 +160,7 @@ const Projects = () => {
               { name: "Vapi", icon: <FaRobot className="text-red-400" /> },
               {
                 name: "Node Js",
-                icon: <SiNodedotjs className="text-blue-500" />,
+                icon: <SiNodedotjs className="text-green-600" />,
               },
               {
                 name: "Gemini API",
@@ -167,7 +168,7 @@ const Projects = () => {
               },
               {
                 name: "Firebase",
-                icon: <DiFirebase className="text-yellow-500" />,
+                icon: <DiFirebase className="text-orange-500" />,
               },
             ]}
           />
@@ -191,12 +192,12 @@ const Projects = () => {
               },
               {
                 name: "Express Js",
-                icon: <SiExpress className="text-orange-500" />,
+                icon: <SiExpress className="text-slate-700" />,
               },
               { name: "React", icon: <SiReact className="text-blue-400" /> },
               {
                 name: "Node Js",
-                icon: <SiNodedotjs className="text-blue-500" />,
+                icon: <SiNodedotjs className="text-green-600" />,
               },
             ]}
           />
@@ -221,12 +222,12 @@ const Projects = () => {
               },
               {
                 name: "Express Js",
-                icon: <SiExpress className="text-orange-500" />,
+                icon: <SiExpress className="text-slate-700" />,
               },
               { name: "React", icon: <SiReact className="text-blue-400" /> },
               {
                 name: "Node Js",
-                icon: <SiNodedotjs className="text-blue-500" />,
+                icon: <SiNodedotjs className="text-green-600" />,
               },
             ]}
           />
@@ -248,12 +249,12 @@ const Projects = () => {
               },
               {
                 name: "Express Js",
-                icon: <SiExpress className="text-orange-500" />,
+                icon: <SiExpress className="text-slate-700" />,
               },
               { name: "React", icon: <SiReact className="text-blue-400" /> },
               {
                 name: "Node Js",
-                icon: <SiNodedotjs className="text-blue-500" />,
+                icon: <SiNodedotjs className="text-green-600" />,
               },
             ]}
           />
@@ -299,7 +300,7 @@ const Projects = () => {
             ]}
           />
 
-          <p>More projects coming soon....</p>
+          <p className="text-slate-500 font-medium animate-pulse">More projects coming soon....</p>
         </div>
       </div>
     </section>
