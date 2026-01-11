@@ -17,7 +17,7 @@ export default function Navbar() {
     <nav className="fixed w-full z-50 bg-white/20 backdrop-blur-xl border-b border-white/30 shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4 text-slate-800">
         <img
-          src="/public/logo/logo.png"
+          src="/logo/logo.png"
           className="h-20 w-20 brightness-110"
           alt="logo"
         />
